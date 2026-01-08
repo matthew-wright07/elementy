@@ -4,6 +4,7 @@ const stripe = new (require("stripe"))(process.env.STRIPE_SECRET_KEY);
 const db = admin.firestore();
 
 exports.stripeWebhook = async (req, res) => {
+  console.log(req.body.toString());
   const sig = req.headers["stripe-signature"];
   let event;
 
