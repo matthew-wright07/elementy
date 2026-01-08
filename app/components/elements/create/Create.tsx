@@ -9,7 +9,6 @@ import { FaArrowUp } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 import { useUserStore } from "../../../utils/store";
 import { Link } from "react-router-dom";
-import Error from "../error/Error";
 
 const VITE_API_URL = import.meta.env.VITE_API_URL;
 
