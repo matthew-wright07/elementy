@@ -1,7 +1,12 @@
 import { useState } from "react"
+import { Link } from "react-router-dom";
 const VITE_API_URL = import.meta.env.VITE_API_URL;
+import { GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../../../utils/firebase";
 
 export default function Auth(){
+    const facebookProvider = new FacebookAuthProvider();
+    const googleProvider = new GoogleAuthProvider();
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
 
@@ -24,6 +29,36 @@ export default function Auth(){
     const [type,setType] = useState("login")
     function changeType(change:string){
         setType(change)
+    }
+
+    async function googleAuth(){
+        const result = await signInWithPopup(auth, googleProvider);
+        const firebaseToken = await result.user.getIdToken();
+        console.log(firebaseToken)   
+        const res = await fetch(VITE_API_URL+"/auth/oauth", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ oAuthToken: firebaseToken }),
+        });
+        const data = await res.json()
+        window.location.href = data.redirect;
+    }
+
+    async function facebookAuth(){
+        const result = await signInWithPopup(auth, facebookProvider);
+        const firebaseToken = await result.user.getIdToken();
+        console.log(firebaseToken)   
+        const res = await fetch(VITE_API_URL+"/auth/oauth", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ oAuthToken: firebaseToken }),
+        });
+        const data = await res.json()
+        window.location.href = data.redirect;
     }
 
     async function handleSignup(){
@@ -59,12 +94,12 @@ export default function Auth(){
     }
 
     return (
-        <div className="flex h-screen">
-            <div className="bg-background p-32 flex flex-col gap-8 w-1/2 h-full justify-center">
-                <div className="flex gap-2 items-center">
+        <div className="flex flex-col justify-center lg:flex-row h-screen">
+            <div className="bg-background p-8 lg:p-16 flex flex-col gap-8 w-full lg:w-1/2 h-full justify-center">                
+                <Link to="/" className="flex gap-2 items-center">
                     <img src="/logo.svg" className="w-8 h-8"/>
                     <h1 className="text-white text-2xl font-bold">Elementy</h1>
-                </div>
+                </Link>
                 <div className="flex flex-col gap-2">
                     <p className="text-white text-xl font-bold">{type==="login"?"Welcome Back":"Let's Get Started"}</p>
                     <p className="text-secondary">{type==="login"?"We Are Happy To See You Again":"We Are Happy Your Here"}</p>
@@ -86,12 +121,12 @@ export default function Auth(){
                     <span className="px-3 text-secondary">OR</span>
                     <div className="flex-grow border-t border-secondary"></div>
                 </div>
-                <div className="flex gap-4 justify-center">
-                    <img src="/google.svg" className="w-60"/>
-                    <img src="/facebook.svg" className="w-60"/>
+                <div className="flex md:flex-row flex-col items-center gap-4 justify-center">
+                    <img onClick={googleAuth} src="/google.svg" className="w-68 lg:w-60 hover:cursor-pointer"/>
+                    <img onClick={facebookAuth} src="/facebook.svg" className="w-68 lg:w-60 hover:cursor-pointer"/>
                 </div>
             </div>
-            <img src="/auth.svg" className="h-full w-1/2 object-cover"/>
+            <img src="/auth.svg" className="h-full w-1/2 object-cover lg:block hidden"/>
         </div>
     )
 }

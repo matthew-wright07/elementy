@@ -1,14 +1,14 @@
 import Wrapper from "../core/Wrapper";
 import Sidebar from "../layout/Sidebar";
-import Dashboard from "../elements/dashboard/Dashboard"
+import Settings from "../elements/settings/Settings"
 import Header from "../layout/Header";
 
-export default function HomePage(){
+export default function SettingsPage(){
     return (
         <Wrapper>
             <Header/>
             <Sidebar/>
-            <Dashboard/>
+            <Settings/>
         </Wrapper>
     )
 }

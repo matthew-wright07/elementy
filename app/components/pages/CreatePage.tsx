@@ -1,14 +1,16 @@
-import Grid from "../core/Grid"
+import Wrapper from "../core/Wrapper"
 import Sidebar from "../layout/Sidebar"
 import Create from "../elements/create/Create"
+import Header from "../layout/Header"
 
 export default function CreatePage(){
     return (
         <>
-            <Grid>
+            <Wrapper>
+                <Header/>
                 <Sidebar/>
                 <Create/>
-            </Grid>
+            </Wrapper>
         </>
     )
 }

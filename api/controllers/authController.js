@@ -57,7 +57,6 @@ exports.Login = async (req, res) => {
 
   const userDoc = await admin.firestore().collection("users").doc(data.localId).get();
   const userData = userDoc.data();
-  console.log(userData)
 
   const payload = {
     email: email,
@@ -88,4 +87,53 @@ exports.GetUser = async (req, res) => {
   const userDoc = await admin.firestore().collection("users").doc(data.uid).get();
   const userData = userDoc.data();
   res.status(200).json({user:userData});
+}
+
+exports.OAuth = async (req, res) => {
+  const oAuthToken = req.body.oAuthToken;
+  const decoded = await admin.auth().verifyIdToken(oAuthToken);
+  const userDoc = await admin.firestore().collection("users").doc(decoded.uid).get();
+  const userData = userDoc.data();
+  console.log(userData)
+  let payload;
+  if (userData === undefined){
+    await admin.firestore().collection("users").doc(decoded.user_id).set({
+      email: decoded.email,
+      plan: "free",
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      saved: [],
+      total_requests: 0,
+      daily_requests: 0,
+      name: decoded.name,
+    });
+    payload = {
+      email: decoded.email,
+      displayName: decoded.name,
+      saved: [],
+      plan: "free",
+      uid: decoded.user_id
+    }
+  }else{
+  payload = {
+    email: userData.email,
+    displayName: userData.name,
+    saved: userData.saved,
+    plan:userData.plan,
+    uid: decoded.user_id
+  };
+  }
+
+  const token = jwt.sign(payload, process.env.JWT_SECRET, {
+    expiresIn: "30d"
+  });
+
+  res.cookie("jwt", token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    domain: process.env.COOKIE_URL,
+    maxAge: 1000 * 60 * 60 * 24 *30
+  });
+
+  res.status(200).json({ redirect: process.env.APP_URL });
 }

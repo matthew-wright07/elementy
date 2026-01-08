@@ -3,11 +3,13 @@ import { useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { RingLoader } from "react-spinners"
 import { useRef, useEffect } from "react";
-import { FaUndo } from "react-icons/fa";
+import { IoMdSettings } from "react-icons/io";
 import { BiSolidCopy } from "react-icons/bi";
 import { FaArrowUp } from "react-icons/fa";
-import { MdOutlineSaveAlt } from "react-icons/md";
+import { FaHeart } from "react-icons/fa6";
 import { useUserStore } from "../../../utils/store";
+import { Link } from "react-router-dom";
+import Error from "../error/Error";
 
 const VITE_API_URL = import.meta.env.VITE_API_URL;
 
@@ -21,6 +23,7 @@ export default function Create(){
     const [type,setType] = useState("display");
     const chatContainerRef = useRef<HTMLDivElement>(null);
     const user = useUserStore(state => state.user);
+    const fetchUser = useUserStore((state) => state.fetchUser);
 
     let appCode = `
         <!DOCTYPE html>
@@ -57,8 +60,9 @@ export default function Create(){
         const res = await fetch(VITE_API_URL+"/chat/openai",{
             method:"POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
+            credentials: "include",
             body: JSON.stringify({message:message,context:nextMessages.slice(-5, -1)})
         })
         const data = await res.json()
@@ -77,11 +81,6 @@ export default function Create(){
         }, 1500);
     }
 
-
-    function refresh(){
-        window.location.reload();
-    }
-
     function handleKeyDown(event: React.KeyboardEvent<HTMLTextAreaElement>){
     if (event.key === "Enter") {
         event.preventDefault();
@@ -96,8 +95,9 @@ export default function Create(){
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({saveData:appCode ,code:code, email: user?.email})
+            body: JSON.stringify({saveData:appCode ,code:code, email: user?.email}),
         })
+        fetchUser();
         setTimeout(() => {
             setSaved(false);
         }, 1500);
@@ -108,14 +108,16 @@ export default function Create(){
     }
     
     return (
-        <div className="col-span-10 bg-tertiary h-full w-full flex flex-col p-16 gap-6">
+        <div className="col-span-10 bg-tertiary h-full w-full flex flex-col p-8 lg:p-16 gap-6 overflow-scroll">
             <div className="flex justify-between items-center">
                 <h2 className="text-white text-2xl font-bold">Create</h2>
                 <div className="flex items-center gap-4">
-                    <FaUndo className="text-white h-5 w-5 hover:cursor-pointer" onClick={refresh}/>
+                    <Link to="/settings">
+                        <IoMdSettings className="text-white h-5 w-5 hover:cursor-pointer"/>
+                    </Link>
                 </div>
             </div>
-            <div className="grid grid-cols-2 w-full h-full gap-8 rounded-lg bg-teriary">
+            <div className="grid xl:grid-cols-2 grid-cols-1 flex flex-col w-full h-full gap-8 rounded-lg bg-teriary">
                 {!loading?
                 <div className="w-full h-full gap-8">
                     <div className="rounded-lg bg-background h-full w-full flex flex-col justify-between">
@@ -144,7 +146,7 @@ export default function Create(){
                             {saved ? (
                                 <FaCheck className="h-5 w-5 text-white" />
                             ) : (
-                                <MdOutlineSaveAlt className="text-white h-5 w-5 hover:cursor-pointer" onClick={save}/>
+                                <FaHeart className="text-white h-5 w-5 hover:cursor-pointer" onClick={save}/>
                             )}
                         </div>
                     </div>
@@ -159,7 +161,7 @@ export default function Create(){
                     <div className="flex flex-col justify-between h-full gap-8">
                         <div className="sticky bottom-0 rounded-lg h-full">
                             <div className="w-full rounded-lg text-white h-full flex flex-col justify-between gap-0">
-                                <textarea onKeyDown={handleKeyDown} onChange={handleChange} value={message} className="placeholder-secondary w-full h-48 resize-none outline-none" placeholder="Make your UI components in seconds"/>
+                                <textarea onKeyDown={handleKeyDown} onChange={handleChange} value={message} className="placeholder-secondary w-full h-48 resize-none outline-none" placeholder="Generate UI components in seconds..."/>
                                 <div className="flex justify-between w-full">
                                     <div className="flex gap-1 items-center">
                                         <AiFillOpenAI className="h-4 w-4"/>

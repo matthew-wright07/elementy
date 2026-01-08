@@ -1,12 +1,14 @@
-import Grid from "../core/Grid";
+import Wrapper from "../core/Wrapper";
 import Sidebar from "../layout/Sidebar";
 import Upgrade from "../elements/upgrade/Upgrade";
+import Header from "../layout/Header";
 
 export default function UpgradePage() {
     return (
-            <Grid>
+            <Wrapper>
+                <Header/>
                 <Sidebar/>
                 <Upgrade/>
-            </Grid>
+            </Wrapper>
     )
 }

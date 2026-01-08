@@ -4,4 +4,21 @@
   --color-primary: #6666ff;
   --color-secondary: #aaaaaa;
   --color-background: #222222;
+
+
+  @keyframes drift1 {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(50%); }
+    100% { transform: translateY(0px); }
+  }
+
+  @keyframes drift2 {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-50%); }
+    100% { transform: translateY(0px); }
+  }
+
+  /* ANIMATION TOKENS */
+  --animate-drift1: drift1 10s ease-in-out infinite;
+  --animate-drift2: drift2 10s ease-in-out infinite;
 }

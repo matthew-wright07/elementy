@@ -1,10 +1,26 @@
 require("dotenv").config();
 const OpenAI = require("openai")
 const client = new OpenAI();
+const admin = require("../utils/firebaseServer");
+const jwt = require("jsonwebtoken");
+const { FieldValue } = admin.firestore;
 
 exports.OpenAI = async (req, res) => {
   const message = req.body.message
   const context = req.body.context || []
+
+  const token = req.cookies.jwt;
+  const data = jwt.verify(token, process.env.JWT_SECRET);
+  const userDoc = await admin.firestore().collection("users").doc(data.uid).get();
+  const userData = userDoc.data();
+
+  if (userData.plan==="free"&&userData.daily_requests>=5){
+    return res.status(400).json({
+      error: "Out of requests"
+    });
+  }
+  else{
+  await admin.firestore().collection("users").doc(data.uid).update({daily_requests: FieldValue.increment(1), total_requests: FieldValue.increment(1)});
 
   const response = await client.responses.create({
     model: "o3-mini",
@@ -27,4 +43,5 @@ exports.OpenAI = async (req, res) => {
   })
 
   res.json({ code: response.output_text })
+  }
 }

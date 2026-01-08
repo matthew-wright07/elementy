@@ -7,7 +7,7 @@ export default function Contact(){
             <PaddingY>
                 <div className="flex flex-col gap-8 w-full">
                     <h2 className="text-4xl font-bold text-white">Contact</h2>
-                    <div className="grid grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <img src="https://wallpapers.com/images/hd/glowing-contact-us-logo-qx58564q7a51etk6.jpg" className="w-full rounded-lg"/>
                         <div className="flex flex-col gap-4">
                             <h3 className="text-white text-2xl font-bold">Let's Get In Touch</h3>

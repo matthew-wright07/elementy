@@ -5,14 +5,21 @@ const app = express();
 const chatRoutes = require("./routes/chatRoutes");
 const authRoutes = require("./routes/authRoutes")
 const userRoutes = require("./routes/userRoutes")
+const { stripeWebhook } = require("./stripeWebhook")
 
 require("dotenv").config();
+
+app.post(
+  "/webhook/stripe",
+  express.raw({ type: "application/json" }),
+  stripeWebhook
+);
 
 app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-  origin:process.env.APP_URL,
+  origin:[process.env.APP_URL,process.env.LANDER_URL],
   credentials: true        
 }));
 

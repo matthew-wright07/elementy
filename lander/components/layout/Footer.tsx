@@ -9,10 +9,10 @@ export default function Footer(){
             <PaddingY>
                 <div className="grid grid-cols-2 lg:grid-cols-4 py-16 gap-8">
                     <div className="flex flex-col gap-2 justify-self-start lg:justify-self-start">
-                        <div className="flex gap-2 items-center">
+                        <Link to="/" className="flex gap-2 items-center">
                             <img src="/logo.svg" className="w-8 h-8"/>
                             <h1 className="text-white text-2xl font-bold">Elementy</h1>
-                        </div>
+                        </Link>
                         <p className="text-white">support@elementy.io</p>
                         <p className="text-white">+1 (512) 586-4786</p>
                     </div>
@@ -20,7 +20,7 @@ export default function Footer(){
                         <p className="text-white font-bold text-lg">Links</p>
                         <div className="flex flex-col gap-0">
                             <Link to="/" className="text-white hover:text-primary transition duration-500">Home</Link>
-                            <Link to="/chat" className="text-white hover:text-primary transition duration-500">Chat</Link>
+                            <Link to="/auth" className={`text-white hover:text-primary transition duration-500`}>Chat</Link>
                             <Link to="/pricing" className="text-white hover:text-primary transition duration-500">Pricing</Link>
                         </div>
                     </div>
@@ -34,9 +34,9 @@ export default function Footer(){
                     <div className="flex flex-col justify-self-end gap-2 text-end lg:justify-self-end lg:text-start">
                         <p className="text-white font-bold text-lg">Legal</p>
                         <div className="flex flex-col gap-0">
-                            <Link to="/" className="text-white hover:text-primary transition duration-500">Cookie Policy</Link>
-                            <Link to="/chat" className="text-white hover:text-primary transition duration-500">Terms of Service</Link>
-                            <Link to="/pricing" className="text-white hover:text-primary transition duration-500">Disclaimer</Link>
+                            <Link to="/cookiepolicy" className="text-white hover:text-primary transition duration-500">Cookie Policy</Link>
+                            <Link to="/termsofservice" className="text-white hover:text-primary transition duration-500">Terms of Service</Link>
+                            <Link to="/privacypolicy" className="text-white hover:text-primary transition duration-500">Privacy Policy</Link>
                         </div>
                     </div>
                 </div>
