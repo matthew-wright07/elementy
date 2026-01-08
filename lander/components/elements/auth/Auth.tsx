@@ -41,6 +41,7 @@ export default function Auth(){
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ oAuthToken: firebaseToken }),
+            credentials: "include",
         });
         const data = await res.json()
         window.location.href = data.redirect;
@@ -56,6 +57,7 @@ export default function Auth(){
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ oAuthToken: firebaseToken }),
+            credentials: "include",
         });
         const data = await res.json()
         window.location.href = data.redirect;
