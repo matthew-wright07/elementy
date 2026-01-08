@@ -6,7 +6,6 @@ const db = admin.firestore();
 exports.stripeWebhook = async (req, res) => {
   console.log(req.body.toString());
   const sig = req.headers["stripe-signature"];
-  console.log(sig)
   let event;
 
   // Verify webhook signature
@@ -16,7 +15,6 @@ exports.stripeWebhook = async (req, res) => {
       sig,
       process.env.STRIPE_WEBHOOK_SECRET
     );
-    console.log(event)
   } catch (err) {
     console.error("Stripe signature verification failed:", err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
