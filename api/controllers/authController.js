@@ -37,9 +37,10 @@ exports.Signup = async (req, res) => {
   res.cookie("jwt", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
+    sameSite: "none",
     domain: process.env.COOKIE_URL,
-    maxAge: 1000 * 60 * 60 * 24 *30
+    maxAge: 1000 * 60 * 60 * 24 *30,
+    path: "/"
   });
 
   res.status(200).json({ redirect: process.env.APP_URL });
@@ -73,9 +74,10 @@ exports.Login = async (req, res) => {
   res.cookie("jwt", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
+    sameSite: "none",
     domain: process.env.COOKIE_URL,
-    maxAge: 1000 * 60 * 60 * 24 *30
+    maxAge: 1000 * 60 * 60 * 24 *30,
+    path: "/"
   });
 
   res.status(200).json({ redirect: process.env.APP_URL });
@@ -130,9 +132,10 @@ exports.OAuth = async (req, res) => {
   res.cookie("jwt", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
+    sameSite: "none",
     domain: process.env.COOKIE_URL,
-    maxAge: 1000 * 60 * 60 * 24 *30
+    maxAge: 1000 * 60 * 60 * 24 *30,
+    path: "/"
   });
 
   res.status(200).json({ redirect: process.env.APP_URL });
