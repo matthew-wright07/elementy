@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 
 export default function Hero(){
     return (
-        <div>
-            <div className="bg-background">
+        <div className="relative">
+            <div className="bg-background inset-0 -z-10 pointer-events-none">
                 <div className="absolute w-[600px] h-[600px] bg-primary/25 rounded-full blur-3xl animate-drift1 top-0 left-0" />
                 <div className="absolute w-[600px] h-[600px] bg-primary/25 rounded-full blur-3xl animate-drift2 bottom-0 right-0" />
             </div>
