@@ -96,7 +96,6 @@ exports.OAuth = async (req, res) => {
   const decoded = await admin.auth().verifyIdToken(oAuthToken);
   const userDoc = await admin.firestore().collection("users").doc(decoded.uid).get();
   const userData = userDoc.data();
-  console.log(userData)
   let payload;
   if (userData === undefined){
     await admin.firestore().collection("users").doc(decoded.user_id).set({
