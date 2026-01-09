@@ -62,6 +62,7 @@ export default function Create(){
     }
 
     async function handleClick(){
+        if (loading) return;
         setLoading(true)
         const nextMessages = [...messages, message]
         setMessages(nextMessages);
@@ -135,13 +136,13 @@ export default function Create(){
                     <div className="flex flex-col justify-between h-full gap-8">
                         <div className="sticky bottom-0 rounded-lg h-full">
                             <div className="w-full rounded-lg text-white h-full flex flex-col justify-between gap-0">
-                                <textarea onKeyDown={handleKeyDown} onChange={handleChange} value={message} className="placeholder-secondary w-full h-48 resize-none outline-none" placeholder="Generate UI components in seconds..."/>
+                                <textarea disabled={loading} onKeyDown={handleKeyDown} onChange={handleChange} value={message} className="placeholder-secondary w-full h-48 resize-none outline-none disabled:text-secondary" placeholder="Generate UI components in seconds..."/>
                                 <div className="flex justify-between w-full">
                                     <div className="flex gap-1 items-center">
                                         <AiFillOpenAI className="h-4 w-4"/>
                                         <p>ChatGPT</p>
                                     </div>
-                                    <FaArrowUp onClick={handleClick} className="text-background bg-white hover:bg-primary hover:text-white rounded-lg p-2 h-8 w-8 flex items-center justify-center hover:cursor-pointer transition duration-500"/>
+                                    <FaArrowUp onClick={!loading ? handleClick : undefined} className="text-background bg-white hover:bg-primary hover:text-white rounded-lg p-2 h-8 w-8 flex items-center justify-center hover:cursor-pointer transition duration-500"/>
                                 </div>
                             </div>
                         </div>
