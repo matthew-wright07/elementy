@@ -1,7 +1,35 @@
+import { useState } from "react";
 import PaddingX from "../../core/PaddingX";
 import PaddingY from "../../core/PaddingY";
+import { FaCheck } from "react-icons/fa";
 
 export default function Contact(){
+    const [name,setName] = useState("")
+    const [email,setEmail] = useState("")
+    const [message,setMessage] = useState("")
+
+    const [sent,setSent] = useState(false)
+
+    function handleClick(){
+        setSent(true)
+        setName("")
+        setEmail("")
+        setMessage("")
+        setTimeout(() => {
+            setSent(false);
+        }, 1500);
+    }
+
+    function handleNameChange(event:any){
+        setName(event.target.value)
+    }
+    function handleEmailChange(event:any){
+        setEmail(event.target.value)
+    }
+        function handleMessageChange(event:any){
+        setMessage(event.target.value)
+    }
+
     return (
         <PaddingX>
             <PaddingY>
@@ -20,11 +48,11 @@ export default function Contact(){
                         </div>
                         <div className="flex flex-col gap-4">
                             <h3 className="text-white text-2xl font-bold">Let's Get In Touch</h3>
-                            <input type="text" className="border border-white p-4 rounded-lg text-white placeholder-secondary" placeholder="Name"/>
-                            <input type="text" className="border border-white p-4 rounded-lg text-white placeholder-secondary" placeholder="Email"/>
-                            <input type="text" className="border border-white p-4 rounded-lg text-white placeholder-secondary" placeholder="Message"/>
+                            <input type="text" value={name} onChange={handleNameChange} className="border border-white p-4 rounded-lg text-white placeholder-secondary" placeholder="Name"/>
+                            <input type="text" value={email} onChange={handleEmailChange} className="border border-white p-4 rounded-lg text-white placeholder-secondary" placeholder="Email"/>
+                            <input type="text" value={message} onChange={handleMessageChange} className="border border-white p-4 rounded-lg text-white placeholder-secondary" placeholder="Message"/>
                             <div>
-                                <button className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-white hover:text-primary transition duration-500 cursor-pointer">Send</button>
+                                <button onClick={handleClick} className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-white hover:text-primary transition duration-500 cursor-pointer">{sent?<FaCheck className="h-5 w-5 text-white" />:"Send"}</button>
                             </div>
                         </div>  
                     </div>
