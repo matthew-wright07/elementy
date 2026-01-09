@@ -32,6 +32,14 @@ export default function Create(){
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <script src="https://cdn.tailwindcss.com"></script>
+            <script>
+                document.addEventListener("click", (e) => {
+                if (e.target.closest("a")) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                });
+            </script>
         </head>
         <body>
             <div class="w-full h-full overflow-y-scroll">
@@ -148,7 +156,7 @@ export default function Create(){
                                 <p onClick={()=>handleTypeChange("code")} className={`${type==="code"?"bg-primary":null} font-bold text-white text-xl rounded-lg p-2 w-1/2 text-center hover:cursor-pointer`}>Code</p>
                             </div>       
                             {type==="display"?
-                            <iframe srcDoc={appCode} className="w-full rounded-lg py-2 h-124"/>
+                            <iframe srcDoc={appCode} className="w-full rounded-lg py-2 h-124" sandbox="allow-scripts allow-same-origin"/>
                             :
                             <pre className="whitespace-pre-wrap text-white w-full rounded-lg py-2 h-124 overflow-auto">
                                 <code>{code}</code>
