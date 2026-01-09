@@ -1,11 +1,12 @@
 import { useState } from "react"
 import { Link } from "react-router-dom";
 const VITE_API_URL = import.meta.env.VITE_API_URL;
-import { GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../../utils/firebase";
+import toast from "react-hot-toast";
 
 export default function Auth(){
-    const facebookProvider = new FacebookAuthProvider();
+    const githubProvider = new GithubAuthProvider();
     const googleProvider = new GoogleAuthProvider();
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
@@ -47,8 +48,9 @@ export default function Auth(){
         window.location.href = data.redirect;
     }
 
-    async function facebookAuth(){
-        const result = await signInWithPopup(auth, facebookProvider);
+    async function githubAuth(){
+        try{
+        const result = await signInWithPopup(auth, githubProvider);
         const firebaseToken = await result.user.getIdToken();
         console.log(firebaseToken)   
         const res = await fetch(VITE_API_URL+"/auth/oauth", {
@@ -60,24 +62,38 @@ export default function Auth(){
             credentials: "include",
         });
         const data = await res.json()
+        if (!res.ok) {
+        toast.error(data.message || "Error");
+        return;
+        }
         window.location.href = data.redirect;
+        }catch(data:any){
+            toast.error("An account already exists with this email. Please sign in using the original method.");
+        }
     }
 
     async function handleSignup(){
-        const res = await fetch(VITE_API_URL+"/auth/signup",{
-            method:"POST",
-            headers: {
-            "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                name: name,
-                email: email,
-                password: password
-            }),
-            credentials: "include",
-        })
-        const data = await res.json()
-        window.location.href = data.redirect;
+    const res = await fetch(VITE_API_URL+"/auth/signup",{
+        method:"POST",
+        headers: {
+        "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: name,
+            email: email,
+            password: password
+        }),
+        credentials: "include",
+    })
+
+    const data = await res.json()
+
+    if (!res.ok) {
+      toast.error(data.message || "Error");
+      return;
+    }
+
+    window.location.href = data.redirect;
     }
     async function handleLogin(){
         const res = await fetch(VITE_API_URL+"/auth/login",{
@@ -92,6 +108,10 @@ export default function Auth(){
             credentials: "include",
         })
         const data = await res.json()
+        if (!res.ok) {
+        toast.error(data.message || "Error");
+        return;
+        }
         window.location.href = data.redirect;
     }
 
@@ -125,7 +145,7 @@ export default function Auth(){
                 </div>
                 <div className="flex md:flex-row flex-col items-center gap-4 justify-center">
                     <img onClick={googleAuth} src="/google.svg" className="w-68 lg:w-60 hover:cursor-pointer"/>
-                    <img onClick={facebookAuth} src="/facebook.svg" className="w-68 lg:w-60 hover:cursor-pointer"/>
+                    <img onClick={githubAuth} src="/github.svg" className="w-68 lg:w-60 hover:cursor-pointer"/>
                 </div>
             </div>
             <img src="/auth.svg" className="h-full w-1/2 object-cover lg:block hidden"/>
