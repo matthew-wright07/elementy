@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const { FieldValue } = admin.firestore;
 
 exports.OpenAI = async (req, res) => {
+  try{
   const message = req.body.message
   const context = req.body.context || []
 
@@ -16,7 +17,7 @@ exports.OpenAI = async (req, res) => {
 
   if (userData.plan==="free"&&userData.daily_requests>=5){
     return res.status(400).json({
-      error: "Out of requests"
+      message: "You’ve reached your daily limit of 5 requests. Upgrade your plan to continue."
     });
   }
   else{
@@ -43,5 +44,11 @@ exports.OpenAI = async (req, res) => {
   })
 
   res.json({ code: response.output_text })
+  }
+  }catch (error){
+    console.log(error)
+    return res.status(400).json({
+      message: error.message,
+    });
   }
 }
