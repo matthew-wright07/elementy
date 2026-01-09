@@ -34,13 +34,15 @@ exports.Signup = async (req, res) => {
       expiresIn: "30d"
     });
 
+    const isProd = process.env.NODE_ENV === "production";
+
     res.cookie("jwt", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "none",
-      domain: process.env.COOKIE_URL,
-      maxAge: 1000 * 60 * 60 * 24 *30,
-      path: "/"
+      secure: isProd,                  // true in prod, false locally
+      sameSite: isProd ? "none" : "lax",
+      domain: isProd ? process.env.COOKIE_DOMAIN : undefined,
+      maxAge: 1000 * 60 * 60 * 24 * 30,
+      path: "/",
     });
 
     res.status(200).json({ redirect: process.env.APP_URL });
@@ -78,13 +80,15 @@ exports.Login = async (req, res) => {
     expiresIn: "30d"
   });
 
+  const isProd = process.env.NODE_ENV === "production";
+
   res.cookie("jwt", token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "none",
-    domain: process.env.COOKIE_URL,
-    maxAge: 1000 * 60 * 60 * 24 *30,
-    path: "/"
+    secure: isProd,                  // true in prod, false locally
+    sameSite: isProd ? "none" : "lax",
+    domain: isProd ? process.env.COOKIE_DOMAIN : undefined,
+    maxAge: 1000 * 60 * 60 * 24 * 30,
+    path: "/",
   });
 
   res.status(200).json({ redirect: process.env.APP_URL });
@@ -149,13 +153,15 @@ exports.OAuth = async (req, res) => {
     expiresIn: "30d"
   });
 
+  const isProd = process.env.NODE_ENV === "production";
+
   res.cookie("jwt", token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "none",
-    domain: process.env.COOKIE_URL,
-    maxAge: 1000 * 60 * 60 * 24 *30,
-    path: "/"
+    secure: isProd,                  // true in prod, false locally
+    sameSite: isProd ? "none" : "lax",
+    domain: isProd ? process.env.COOKIE_DOMAIN : undefined,
+    maxAge: 1000 * 60 * 60 * 24 * 30,
+    path: "/",
   });
 
   res.status(200).json({ redirect: process.env.APP_URL });
