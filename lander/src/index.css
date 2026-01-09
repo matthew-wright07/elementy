@@ -3,8 +3,9 @@
 @theme inline {
   --color-primary: #6666ff;
   --color-secondary: #aaaaaa;
+  --color-tertiary: #333333;
+  --color-quaternary: #444444;
   --color-background: #222222;
-
 
   @keyframes drift1 {
     0%   { transform: translateY(0px); }
