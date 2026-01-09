@@ -9,11 +9,11 @@ export default function Walkthrough(){
                 <div className="flex flex-col gap-8 w-full">
                     <h2 className="text-4xl font-bold text-white">Walkthrough</h2>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <iframe
-                            src="https://www.youtube.com/embed/vMyk77NNJeU"
-                            className="w-full aspect-video rounded-lg"
-                            allow="autoplay; encrypted-media"
-                            allowFullScreen
+                        <video
+                        src="/walkthrough.mp4"
+                        className="w-full rounded-lg"
+                        preload="metadata"
+                        controls
                         />
                         <div className="flex flex-col gap-4">
                             <h3 className="text-white text-2xl font-bold">Let's Take A Look</h3>
