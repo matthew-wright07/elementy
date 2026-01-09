@@ -9,6 +9,7 @@ import { FaArrowUp } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
 import { useUserStore } from "../../../utils/store";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const VITE_API_URL = import.meta.env.VITE_API_URL;
 
@@ -65,10 +66,14 @@ export default function Create(){
             body: JSON.stringify({message:message,context:nextMessages.slice(-5, -1)})
         })
         const data = await res.json()
+        setLoading(false)
+        setMessage("");
+        if (!res.ok) {
+            toast.error(data.message || "Error");
+        return;
+        }
         setMessages(prev => [...prev, data.code])
         setCode(data.code)
-        setMessage("");
-        setLoading(false)
     }
 
     async function copy() {
@@ -117,6 +122,23 @@ export default function Create(){
                 </div>
             </div>
             <div className="grid xl:grid-cols-2 grid-cols-1 flex flex-col w-full h-full gap-8 rounded-lg bg-teriary">
+                <div className="w-full h-full p-8 flex flex-col gap-4 bg-background rounded-lg">
+                    <p className="font-bold text-white text-xl">Chat</p>
+                    <div className="flex flex-col justify-between h-full gap-8">
+                        <div className="sticky bottom-0 rounded-lg h-full">
+                            <div className="w-full rounded-lg text-white h-full flex flex-col justify-between gap-0">
+                                <textarea onKeyDown={handleKeyDown} onChange={handleChange} value={message} className="placeholder-secondary w-full h-48 resize-none outline-none" placeholder="Generate UI components in seconds..."/>
+                                <div className="flex justify-between w-full">
+                                    <div className="flex gap-1 items-center">
+                                        <AiFillOpenAI className="h-4 w-4"/>
+                                        <p>ChatGPT</p>
+                                    </div>
+                                    <FaArrowUp onClick={handleClick} className="text-background bg-white hover:bg-primary hover:text-white rounded-lg p-2 h-8 w-8 flex items-center justify-center hover:cursor-pointer transition duration-500"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {!loading?
                 <div className="w-full h-full gap-8">
                     <div className="rounded-lg bg-background h-full w-full flex flex-col justify-between">
@@ -155,23 +177,6 @@ export default function Create(){
                     <RingLoader color="#ffffff" size={32}/>
                 </div>
                 }
-                <div className="w-full h-full p-8 flex flex-col gap-4 bg-background rounded-lg">
-                    <p className="font-bold text-white text-xl">Chat</p>
-                    <div className="flex flex-col justify-between h-full gap-8">
-                        <div className="sticky bottom-0 rounded-lg h-full">
-                            <div className="w-full rounded-lg text-white h-full flex flex-col justify-between gap-0">
-                                <textarea onKeyDown={handleKeyDown} onChange={handleChange} value={message} className="placeholder-secondary w-full h-48 resize-none outline-none" placeholder="Generate UI components in seconds..."/>
-                                <div className="flex justify-between w-full">
-                                    <div className="flex gap-1 items-center">
-                                        <AiFillOpenAI className="h-4 w-4"/>
-                                        <p>ChatGPT</p>
-                                    </div>
-                                    <FaArrowUp onClick={handleClick} className="text-background bg-white hover:bg-primary hover:text-white rounded-lg p-2 h-8 w-8 flex items-center justify-center hover:cursor-pointer transition duration-500"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     )
