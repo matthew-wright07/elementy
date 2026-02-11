@@ -46,7 +46,7 @@ export default function MobileMenu(){
                                 <FaArrowRight className="w-6 h-6"/>
                             </Link>
                             <Link to="/auth" className="flex justify-between w-full items-center py-8 hover:text-primary text-white transition duration-500">
-                                <p className="text-2xl font-bold">Chat</p>
+                                <p className="text-2xl font-bold">Create</p>
                                 <FaArrowRight className="w-6 h-6"/>
                             </Link>
                             <Link to="/pricing" className="flex justify-between w-full items-center py-8 hover:text-primary text-white transition duration-500">

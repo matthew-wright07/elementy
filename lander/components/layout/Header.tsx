@@ -17,7 +17,7 @@ export default function Header(){
                     </Link>
                     <div className="flex gap-4 items-center">
                         <Link to="/" className={`${url==="/"?"text-primary":"text-white"} hover:text-primary transition duration-500`}>Home</Link>
-                        <Link to="/auth" className={`${url==="/chat"?"text-primary":"text-white"} hover:text-primary transition duration-500`}>Chat</Link>
+                        <Link to="/auth" className={`${url==="/chat"?"text-primary":"text-white"} hover:text-primary transition duration-500`}>Create</Link>
                         <Link to="/pricing" className={`${url==="/pricing"?"text-primary":"text-white"} hover:text-primary transition duration-500`}>Pricing</Link>
                         <Link to="/about" className={`${url==="/about"?"text-primary":"text-white"} hover:text-primary transition duration-500`}>About</Link>
                         <Link to="/contact" className={`${url==="/contact"?"text-primary":"text-white"} hover:text-primary transition duration-500`}>Contact</Link>

@@ -20,7 +20,7 @@ export default function Footer(){
                         <p className="text-white font-bold text-lg">Links</p>
                         <div className="flex flex-col gap-0">
                             <Link to="/" className="text-white hover:text-primary transition duration-500">Home</Link>
-                            <Link to="/auth" className={`text-white hover:text-primary transition duration-500`}>Chat</Link>
+                            <Link to="/auth" className={`text-white hover:text-primary transition duration-500`}>Create</Link>
                             <Link to="/pricing" className="text-white hover:text-primary transition duration-500">Pricing</Link>
                         </div>
                     </div>
