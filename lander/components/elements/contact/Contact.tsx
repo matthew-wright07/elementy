@@ -42,15 +42,15 @@ export default function Contact(){
                     <div className="flex flex-col gap-4">
                         <div className="flex flex-col gap-2">
                             <p className="text-white text-lg">Name</p>
-                            <input type="text" value={name} onChange={handleNameChange} className="border border-white p-4 rounded-lg text-white placeholder-secondary" placeholder="Enter Your Full Name"/>
+                            <input type="text" value={name} onChange={handleNameChange} className="border border-white p-4 rounded-lg text-white placeholder-secondary"/>
                         </div>
                         <div className="flex flex-col gap-2">
                             <p className="text-white text-lg">Email</p>
-                            <input type="text" value={email} onChange={handleEmailChange} className="border border-white p-4 rounded-lg text-white placeholder-secondary" placeholder="Enter Your Email"/>
+                            <input type="text" value={email} onChange={handleEmailChange} className="border border-white p-4 rounded-lg text-white placeholder-secondary"/>
                         </div>
                         <div className="flex flex-col gap-2">
                             <p className="text-white text-lg">Message</p>
-                            <input type="text" value={message} onChange={handleMessageChange} className="border border-white p-4 rounded-lg text-white placeholder-secondary" placeholder="Enter Your Message"/>
+                            <input type="text" value={message} onChange={handleMessageChange} className="border border-white p-4 rounded-lg text-white placeholder-secondary"/>
                         </div>
                         <div>
                             <button onClick={handleClick} className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-white hover:text-primary transition duration-500 cursor-pointer">{sent?<FaCheck className="h-5 w-5 text-white" />:"Send"}</button>
