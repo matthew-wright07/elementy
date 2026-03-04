@@ -15,7 +15,7 @@ export default function Hero(){
                 <PaddingY>
                     <div className="flex flex-col items-center justify-center py-8">
                         <div className="flex flex-col gap-6 items-center text-center w-full lg:w-3/4">
-                            <h1 className="text-white font-bold text-6xl lg:text-8xl">Supercharging UI creation with AI</h1>
+                            <h1 className="text-white font-bold text-4xl md:text-6xl lg:text-8xl">Supercharging UI creation with AI</h1>
                             <p className="text-secondary lg:w-1/2">Build beautiful, production-ready user interfaces in a fraction of the time. Our AI streamlines components and styling so you can go from idea to interface instantly. Spend less time on boilerplate and more time shipping great products.</p>
                             <div className="flex gap-4">
                                 <Link to="/about"  className="px-4 py-2 border border-white text-white rounded-lg hover:bg-white hover:text-primary transition duration-500 cursor-pointer">Explore</Link>
