@@ -27,7 +27,7 @@ export default function MobileMenu(){
         <div className="block xl:hidden">
             <IoMenu className="text-white h-8 w-8 hover:cursor-pointer" onClick={handleClick}/>
             {show?
-            <div className="fixed top-0 bottom-0 left-0 right-0 bg-background z-10">
+            <div className="fixed top-0 bottom-0 left-0 right-0 bg-background z-10 flex flex-col overflow-y-auto">
                 <PaddingX>
                     <PaddingY>
                         <div className="w-full flex justify-between items-center rounded-lg flex xl:hidden">
