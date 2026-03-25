@@ -8,8 +8,8 @@ export default function Hero(){
     return (
         <div className="relative">
             <div className="bg-background inset-0 -z-10 pointer-events-none">
-                <div className="absolute w-[300px] h-[300px] lg:w-[600px] lg:h-[600px] bg-primary/25 rounded-full blur-3xl animate-drift1 top-0 left-0" />
-                <div className="absolute w-[300px] h-[300px] lg:w-[600px] lg:h-[600px] bg-primary/25 rounded-full blur-3xl animate-drift2 bottom-0 right-0" />
+                <div className="absolute w-[400px] h-[400px] lg:w-[600px] lg:h-[600px] bg-primary/25 rounded-full blur-3xl animate-drift1 top-0 left-0" />
+                <div className="absolute w-[400px] h-[400px] lg:w-[600px] lg:h-[600px] bg-primary/25 rounded-full blur-3xl animate-drift2 bottom-0 right-0" />
             </div>
             <PaddingX>
                 <PaddingY>
