@@ -33,7 +33,7 @@ export default function Contact(){
     return (
         <PaddingX>
             <PaddingY>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 rounded-lg py-8 w-full">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 rounded-lg w-full">
                     <div className="flex flex-col gap-8 w-3/4">
                         <p className="text-white font-bold text-4xl">Lets Get In Touch</p>
                         <p className="text-secondary text-lg">If you need help with anything, we’re here for you. Whether it’s a quick question, a technical issue, or just something that doesn’t seem right, don’t hesitate to reach out. We’re always happy to help and will get back to you as soon as we can.</p>
