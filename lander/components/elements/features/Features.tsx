@@ -15,7 +15,7 @@ export default function Features(){
                         <h2 className="text-4xl font-bold text-white">Features</h2>
                         <div className="grid grid-cols-1 xl:grid-cols-4 w-full gap-4 lg:gap-16">
 
-                            <FeaturesCard title="Faster Development" description="AI-powered development features are built to dramatically speed up how you build. From instant code generation to intelligent suggestions and automated workflows, AI removes repetitive work and friction.">
+                            <FeaturesCard title="Faster Development" description="AI-powered development features are built to dramatically speed up how you build, making your workflow smoother and more efficient.">
                                 <FaBoltLightning className="text-white h-8 w-8"/>
                             </FeaturesCard>
 
