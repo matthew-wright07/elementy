@@ -15,7 +15,7 @@ export default function QuestionsCard({question,answer}:Props){
         <div onClick={handleClick} className="flex flex-col gap-4 border border-white p-4 rounded-lg hover:cursor-pointer">
             <div className="flex justify-between items-center">
                 <p className="text-white">{question}</p>
-                <IoIosArrowDown className={`${clicked?"rotate-180":null} w-4 h-4 text-white`}/>
+                <IoIosArrowDown className={`${clicked?"rotate-180":null} w-4 h-4 text-white transition duration-500`}/>
             </div>
             {clicked?<p className="text-white">{answer}</p>:null}
         </div>
