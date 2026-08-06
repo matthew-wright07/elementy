@@ -6,22 +6,18 @@ import { Link } from "react-router-dom";
 
 export default function Hero(){
     return (
-        <div className="relative">
-            <div className="bg-background inset-0 -z-10 pointer-events-none">
-                <div className="absolute w-[400px] h-[400px] lg:w-[600px] lg:h-[600px] bg-primary/25 rounded-full blur-3xl animate-drift1 top-0 left-0" />
-                <div className="absolute w-[400px] h-[400px] lg:w-[600px] lg:h-[600px] bg-primary/25 rounded-full blur-3xl animate-drift2 bottom-0 right-0" />
-            </div>
+        <div className="lg:bg-[url('/hero.jpg')] bg-cover bg-center w-full">
             <PaddingX>
                 <PaddingY>
                     <div className="flex flex-col items-center justify-center py-8">
                         <div className="flex flex-col gap-6 items-center text-center w-full lg:w-3/4">
-                            <h1 className="text-white font-bold text-5xl md:text-6xl lg:text-8xl">Supercharging UI creation with AI</h1>
+                            <h1 className="text-white font-bold text-5xl md:text-6xl lg:text-8xl">Supercharging <span className="text-primary">UI creation</span> with AI</h1>
                             <p className="text-secondary lg:w-1/2">Build beautiful, production-ready user interfaces in a fraction of the time. Our AI streamlines components and styling so you can go from idea to interface instantly. Spend less time on boilerplate and more time shipping great products.</p>
                             <div className="flex gap-4">
-                                <Link to="/about"  className="px-4 py-2 border border-white text-white rounded-lg hover:bg-white hover:text-primary transition duration-500 cursor-pointer">Explore</Link>
-                                <Link to="/auth" className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-white hover:text-primary transition duration-500 cursor-pointer">Start</Link>
+                                <Link to="/about"  className="px-6 py-3 border border-white text-white rounded-lg hover:bg-white hover:text-primary transition duration-500 cursor-pointer">Explore</Link>
+                                <Link to="/auth" className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-white hover:text-primary transition duration-500 cursor-pointer">Start</Link>
                             </div>
-                            <div className="w-full border-2 border-white rounded-lg text-white relative h-64 flex flex-col justify-between p-4 gap-2">
+                            <div className="w-full rounded-lg text-white relative h-64 flex flex-col justify-between p-4 gap-2 bg-tertiary">
                                 <textarea className="placeholder-secondary w-full h-full resize-none outline-none" placeholder="Generate UI components in seconds..."/>
                                 <div className="flex justify-between w-full">
                                     <div className="flex gap-1 items-center">

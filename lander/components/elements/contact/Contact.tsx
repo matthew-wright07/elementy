@@ -53,7 +53,7 @@ export default function Contact(){
                             <input type="text" value={message} onChange={handleMessageChange} className="border border-white p-4 rounded-lg text-white placeholder-secondary"/>
                         </div>
                         <div>
-                            <button onClick={handleClick} className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-white hover:text-primary transition duration-500 cursor-pointer">{sent?<FaCheck className="h-5 w-5 text-white" />:"Send"}</button>
+                            <button onClick={handleClick} className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-white hover:text-primary transition duration-500 cursor-pointer">{sent?<FaCheck className="h-5 w-5 text-white" />:"Send"}</button>
                         </div>
                     </div>  
                 </div>
