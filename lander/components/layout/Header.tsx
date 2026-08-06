@@ -2,7 +2,6 @@
 
 import { Link } from "react-router-dom"
 import PaddingX from "../core/PaddingX"
-import PaddingY from "../core/PaddingY"
 import MobileMenu from "./MobileMenu"
 import { useLocation } from "react-router-dom"
 import { useState, useEffect } from "react"
