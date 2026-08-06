@@ -1,31 +1,14 @@
-"use client"
-
 import { Link } from "react-router-dom"
 import PaddingX from "../core/PaddingX"
 import MobileMenu from "./MobileMenu"
 import { useLocation } from "react-router-dom"
-import { useState, useEffect } from "react"
 
 export default function Header(){
-    const [scrolled, setScrolled] = useState(false)
-
-    useEffect(()=>{
-        function handleScroll(){
-            setScrolled(window.scrollY>0)
-        }
-
-        window.addEventListener("scroll", handleScroll)
-        handleScroll()
-
-        return ()=>{
-            window.removeEventListener("scroll", handleScroll)
-        }
-    },[])
 
     const location = useLocation()
     const url = location.pathname
     return (
-        <div className={`${scrolled===true?"bg-background":null} sticky top-0 z-1`}>
+        <div className="bg-background sticky top-0 z-1">
             <PaddingX>
                 <div className="py-8">
                     <div className="w-full grid grid-cols-3 items-center rounded-lg hidden lg:grid">
