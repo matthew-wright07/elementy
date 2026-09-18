@@ -139,7 +139,7 @@ export default function Create(){
                                 <textarea disabled={loading} onKeyDown={handleKeyDown} onChange={handleChange} value={message} className="placeholder-secondary w-full h-48 resize-none outline-none disabled:text-secondary" placeholder="Generate UI components in seconds..."/>
                                 <div className="flex justify-between w-full">
                                     <div className="flex gap-1 items-center">
-                                        <AiFillOpenAI className="h-4 w-4"/>
+                                        <AiFillOpenAI className="h-6 w-6"/>
                                         <p>ChatGPT</p>
                                     </div>
                                     <FaArrowUp onClick={!loading ? handleClick : undefined} className="text-background bg-white hover:bg-primary hover:text-white rounded-lg p-2 h-8 w-8 flex items-center justify-center hover:cursor-pointer transition duration-500"/>
