@@ -4,7 +4,7 @@ type Props = {
 
 export default function PaddingY({children}:Props){
     return (
-        <div className="py-12">
+        <div className="py-20">
             {children}
         </div>
     )
