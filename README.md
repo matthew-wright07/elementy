@@ -26,32 +26,19 @@ Node.js
 
 ## Installation
 
-```git clone https://github.com/matthew-wright07/elementy
-
+```bash
+git clone https://github.com/matthew-wright07/elementy
 cd elementy
-
 cd api
-
 npm install
-
 npm run dev
-
 (create new terminal or process)
-
 cd ..
-
 cd app
-
 npm install
-
 npm run dev
-
 (create new terminal or process)
-
 cd ..
-
 cd lander
-
 npm install
-
-npm run dev```
+npm run dev
