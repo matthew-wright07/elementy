@@ -26,7 +26,7 @@ Node.js
 
 ## Installation
 
-git clone https://github.com/matthew-wright07/elementy
+```git clone https://github.com/matthew-wright07/elementy
 
 cd elementy
 
@@ -54,4 +54,4 @@ cd lander
 
 npm install
 
-npm run dev
+npm run dev```
