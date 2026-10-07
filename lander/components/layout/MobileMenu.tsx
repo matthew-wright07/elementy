@@ -3,7 +3,6 @@ import { IoClose } from "react-icons/io5";
 import { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import PaddingX from "../core/PaddingX";
-import PaddingY from "../core/PaddingY";
 import { FaArrowRight } from "react-icons/fa";
 
 
