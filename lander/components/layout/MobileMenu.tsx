@@ -29,7 +29,7 @@ export default function MobileMenu(){
             {show?
             <div className="fixed top-0 bottom-0 left-0 right-0 bg-background z-10 flex flex-col overflow-y-auto">
                 <PaddingX>
-                    <PaddingY>
+                    <div className="py-8 w-full max-w-[1600px]">
                         <div className="w-full flex justify-between items-center rounded-lg flex lg:hidden">
                             <Link to="/" className="flex gap-2 items-center">
                                 <img src="/logo.svg" className="w-8 h-8"/>
@@ -37,10 +37,10 @@ export default function MobileMenu(){
                             </Link>
                             <IoClose onClick={handleClick} className="text-white h-8 w-8 hover:cursor-pointer"/>
                         </div>
-                    </PaddingY>
+                    </div>
                 </PaddingX>
                 <PaddingX>
-                        <div className="flex flex-col">
+                        <div className="flex flex-col w-full">
                             <Link to="/" className="flex justify-between w-full items-center py-8 hover:text-primary text-white transition duration-500">
                                 <p className="text-2xl font-bold">Home</p>
                                 <FaArrowRight className="w-6 h-6"/>

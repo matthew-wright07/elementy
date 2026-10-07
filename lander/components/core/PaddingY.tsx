@@ -4,7 +4,7 @@ type Props = {
 
 export default function PaddingY({children}:Props){
     return (
-        <div className="py-20">
+        <div className="py-20 max-w-[1600px] w-full">
             {children}
         </div>
     )

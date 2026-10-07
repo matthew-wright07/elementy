@@ -8,7 +8,7 @@ export default function Footer(){
         <PaddingX>
             <PaddingY>
                 <div className="grid grid-cols-2 lg:grid-cols-4 py-16 gap-8">
-                    <div className="flex flex-col gap-2 justify-self-start lg:justify-self-start">
+                    <div className="flex flex-col gap-2 justify-self-start lg:justify-self-start w-full">
                         <Link to="/" className="flex gap-2 items-center">
                             <img src="/logo.svg" className="w-8 h-8"/>
                             <h1 className="text-white text-2xl font-bold">Elementy</h1>

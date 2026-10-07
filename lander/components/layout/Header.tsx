@@ -8,9 +8,9 @@ export default function Header(){
     const location = useLocation()
     const url = location.pathname
     return (
-        <div className="bg-background sticky top-0 z-1">
+        <div className="bg-background sticky top-0 z-1 w-full">
             <PaddingX>
-                <div className="py-8">
+                <div className="py-8 w-full max-w-[1600px]">
                     <div className="w-full grid grid-cols-3 items-center rounded-lg hidden lg:grid">
                         <Link to="/" className="flex gap-2 items-center justify-self-start">
                             <img src="/logo.svg" className="w-8 h-8"/>
