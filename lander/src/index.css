@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,800&display=swap');
 @import "tailwindcss";
+
 
 @theme inline {
   --color-primary: #6666ff;
@@ -19,7 +21,8 @@
     100% { transform: translateY(0px); }
   }
 
-  /* ANIMATION TOKENS */
   --animate-drift1: drift1 10s ease-in-out infinite;
   --animate-drift2: drift2 10s ease-in-out infinite;
+
+  --font-bricolage-grotesque: 'Bricolage Grotesque', Arial;
 }
